@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LuxDent - Next-Generation Dental Practice Management</title>
+    <meta name="description" content="Streamline your dental practice with LuxDent. Appointments, patient records, billing, and communication all in one beautifully designed platform.">
+    
+    <!-- Google Fonts: Playfair Display (Luxurious Headings) & Inter (Clean Body) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    
+    <!-- Navbar -->
+    <nav class="navbar text-reveal">
+        <div class="container nav-container">
+            <a href="#" class="logo">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 2C8.68629 2 6 4.68629 6 8C6 11.0052 7.71221 14.7171 10.1585 17.848C10.7411 18.5938 11.3912 19.2974 12 19.8967C12.6088 19.2974 13.2589 18.5938 13.8415 17.848C16.2878 14.7171 18 11.0052 18 8C18 4.68629 15.3137 2 12 2Z" stroke="url(#logo-grad)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <defs>
+                        <linearGradient id="logo-grad" x1="6" y1="2" x2="18" y2="20" gradientUnits="userSpaceOnUse">
+                            <stop stop-color="#06B6D4"/>
+                            <stop offset="1" stop-color="#4F46E5"/>
+                        </linearGradient>
+                    </defs>
+                </svg>
+                LuxDent
+            </a>
+            <ul class="nav-links">
+                <li><a href="#features">Platform</a></li>
+                <li><a href="#pricing">Membership</a></li>
+                <li><a href="#testimonials">Reviews</a></li>
+            </ul>
+            <div class="nav-cta">
+                <a href="#portal-section" class="btn btn-outline" id="nav-login-btn">Log In</a>
+                <a href="#demo" class="btn btn-primary">Book a Demo</a>
+            </div>
+            <button class="mobile-menu-toggle" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section (Scroll-Jacked) -->
+    <div id="hero-scroll" style="height: 350vh; position: relative;">
+        <header class="hero sticky-hero" style="position: sticky; top: 0; height: 100vh; overflow: hidden; display: flex; align-items: center; padding-top: var(--nav-height);">
+            
+            <!-- Canvas Animation Background perfectly blended and VEO watermark cropped -->
+            <canvas id="tooth-canvas" style="position: absolute; left: 0; top: 0; width: 100%; height: 100%; object-fit: contain; pointer-events: none; mix-blend-mode: screen; z-index: 0; opacity: 0; transition: opacity 1s;"></canvas>
+
+            <!-- Text Readability Scrim Overlay -->
+            <div id="text-scrim" style="position: absolute; inset: 0; background: linear-gradient(90deg, #050B14 0%, rgba(5, 11, 20, 0.95) 25%, rgba(5, 11, 20, 0.7) 45%, transparent 100%); z-index: 5; pointer-events: none;"></div>
+
+
+            <!-- Shimmering Skeleton Loader for the 3D Object -->
+            <style>
+                @keyframes skeleton-shimmer {
+                    0% { background-position: 200% 0; }
+                    100% { background-position: -200% 0; }
+                }
+            </style>
+            <div id="hero-loading" style="position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); width: 45%; height: 70%; max-width: 600px; background: linear-gradient(90deg, rgba(6, 182, 212, 0.0) 0%, rgba(6, 182, 212, 0.08) 50%, rgba(6, 182, 212, 0.0) 100%); background-size: 200% 100%; animation: skeleton-shimmer 2.5s infinite linear; border-radius: 40% 40% 50% 50%; filter: blur(60px); z-index: 1; transition: opacity 1s; pointer-events: none;"></div>
+
+            <div class="container hero-container" style="position: relative; z-index: 10; width: 100%;">
+                <div class="hero-content" id="hero-text" style="transition: opacity 0.3s, transform 0.3s;">
+                    <div class="badge fade-up">Now featuring AI Charting ✨</div>
+                    <h1 class="fade-up" style="animation-delay: 0.1s;">Elevate your <span class="text-gradient">practice</span> to an art form.</h1>
+                    <p class="fade-up" style="animation-delay: 0.2s;">The quintessential operating system for the most distinguished dental clinics. Uncompromising elegance meets clinical precision.</p>
+                    <div class="hero-buttons fade-up" style="animation-delay: 0.3s;">
+                        <a href="#demo" class="btn btn-primary btn-large">Book a Demo</a>
+                        <a href="#tour" class="btn btn-secondary btn-large">Explore the Platform</a>
+                    </div>
+                    <div class="hero-social-proof fade-up" style="animation-delay: 0.4s;">
+                        <div class="avatars">
+                            <img src="https://i.pravatar.cc/100?img=1" alt="Dentist" />
+                            <img src="https://i.pravatar.cc/100?img=2" alt="Dentist" />
+                            <img src="https://i.pravatar.cc/100?img=3" alt="Dentist" />
+                            <img src="https://i.pravatar.cc/100?img=4" alt="Dentist" />
+                        </div>
+                        <p>Trust by over 2,000 premier clinical estates worldwide.</p>
+                    </div>
+                </div>
+                <!-- The dashboard mockup and floating cards are removed to give way to the Tooth Animation -->
+            </div>
+        </header>
+    </div>
+
+    <!-- Partners / Client Logos -->
+    <section class="partners section-padding">
+        <div class="container text-center">
+            <p class="section-subtitle fade-up">SEAMLESS INTEGRATION WITH YOUR TOOLS</p>
+            <div class="partner-logos fade-up">
+                <div class="logo-placeholder">Stripe</div>
+                <div class="logo-placeholder">QuickBooks</div>
+                <div class="logo-placeholder">Zoom</div>
+                <div class="logo-placeholder">Workspace</div>
+                <div class="logo-placeholder">Twilio</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section - Bento Grid Layout -->
+    <section id="features" class="features section-padding">
+        <div class="container">
+            <div class="section-header text-center fade-up">
+                <h2 class="section-title">The anatomy of <span class="text-gradient">perfection</span></h2>
+                <p class="section-desc">Discard archaic systems. LuxDent offers an intricately crafted suite designed to elevate every touchpoint of your clinic.</p>
+            </div>
+            
+            <div class="bento-grid">
+                <!-- Bento Wide / Large -->
+                <div class="feature-card glass-panel bento-large fade-up">
+                    <div class="card-inner">
+                        <div class="feature-icon">✨</div>
+                        <h3>The Anticipatory Calendar</h3>
+                        <p>Our AI orchestrates your day, ensuring a seamless flow of patients. Experience completely full calendars with elegant, automated SMS cadences.</p>
+                        <!-- Mockup visual inside bento -->
+                        <div class="bento-visual calendar-visual">
+                            <div class="cal-row header"><div class="cv-h">Mon</div><div class="cv-h">Tue</div><div class="cv-h">Wed</div></div>
+                            <div class="cal-row"><div class="cv-d active"></div><div class="cv-d"></div><div class="cv-d"></div></div>
+                            <div class="cal-row"><div class="cv-d"></div><div class="cv-d"></div><div class="cv-d active2"></div></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bento Tall -->
+                <div class="feature-card glass-panel bento-tall fade-up" style="animation-delay: 0.1s;">
+                    <div class="card-inner">
+                        <div class="feature-icon">📁</div>
+                        <h3>The Digital Vault</h3>
+                        <p>Immaculate cloud-based charting and high-fidelity X-ray storage. Access every diagnostic nuance with absolute clarity, instantly.</p>
+                        <div class="bento-visual chart-visual">
+                            <div class="line"></div>
+                            <div class="line w-70"></div>
+                            <div class="line w-50"></div>
+                            <div class="circle"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bento Square -->
+                <div class="feature-card glass-panel fade-up" style="animation-delay: 0.2s;">
+                    <div class="card-inner">
+                        <div class="feature-icon">💳</div>
+                        <h3>Frictionless Commerce</h3>
+                        <p>Invisible and secure transactions. Elevate the payment process to feel like an extension of your premium service.</p>
+                    </div>
+                </div>
+
+                <!-- Bento Square -->
+                <div class="feature-card glass-panel fade-up" style="animation-delay: 0.3s;">
+                    <div class="card-inner">
+                        <div class="feature-icon">🔒</div>
+                        <h3>Fort Knox Security</h3>
+                        <p>Bank-grade encryption ensures your clinical data remains strictly confidential and compliant.</p>
+                    </div>
+                </div>
+
+                <!-- Bento Tall (Fills the right-side gap) -->
+                <div class="feature-card glass-panel bento-tall fade-up" style="animation-delay: 0.35s;">
+                    <div class="card-inner">
+                        <div class="feature-icon">💬</div>
+                        <h3>Patient Concierge</h3>
+                        <p>An intelligent communication layer. Automated follow-ups, post-op care, and effortless two-way messaging.</p>
+                        <div class="bento-visual message-visual" style="display:flex; flex-direction:column; gap:16px; margin-top: auto; opacity: 0.8;">
+                            <div style="background: rgba(255,255,255,0.05); padding: 16px; border-radius: 16px 16px 16px 0; width: 85%; border: 1px solid rgba(255,255,255,0.05);">
+                                <div style="width: 50%; height: 6px; background: rgba(255,255,255,0.2); border-radius: 4px; margin-bottom: 8px;"></div>
+                                <div style="width: 75%; height: 6px; background: rgba(255,255,255,0.2); border-radius: 4px;"></div>
+                            </div>
+                            <div style="background: rgba(6, 182, 212, 0.15); padding: 16px; border-radius: 16px 16px 0 16px; width: 85%; align-self: flex-end; border: 1px solid rgba(6, 182, 212, 0.2);">
+                                <div style="width: 60%; height: 6px; background: var(--accent-teal); opacity: 0.8; border-radius: 4px; margin-bottom: 8px;"></div>
+                                <div style="width: 40%; height: 6px; background: var(--accent-teal); opacity: 0.8; border-radius: 4px;"></div>
+                            </div>
+                            <div style="background: rgba(255,255,255,0.05); padding: 16px; border-radius: 16px 16px 16px 0; width: 65%; border: 1px solid rgba(255,255,255,0.05);">
+                                <div style="width: 90%; height: 6px; background: rgba(255,255,255,0.2); border-radius: 4px;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bento Wide -->
+                <div class="feature-card glass-panel bento-wide fade-up" style="animation-delay: 0.4s;">
+                    <div class="card-inner">
+                        <div class="feature-content-split">
+                            <div>
+                                <div class="feature-icon">📈</div>
+                                <h3>Executive Analytics</h3>
+                                <p>Unparalleled insights into revenue and patient retention. Visualize your clinic's success through meticulously designed dashboards.</p>
+                            </div>
+                            <div class="bento-visual graph-visual">
+                                <!-- Simple CSS bar graph -->
+                                <div class="bar" style="height: 40%"></div>
+                                <div class="bar" style="height: 70%"></div>
+                                <div class="bar" style="height: 50%"></div>
+                                <div class="bar" style="height: 100%"></div>
+                                <div class="bar" style="height: 80%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="pricing section-padding">
+        <div class="container">
+            <div class="section-header text-center fade-up">
+                <h2 class="section-title">Investment in <span class="text-gradient">excellence</span></h2>
+                <p class="section-desc">Transparent memberships designed for practices that refuse to compromise.</p>
+                
+                <div class="pricing-toggle">
+                    <span class="active">Monthly</span>
+                    <label class="switch">
+                        <input type="checkbox" id="pricing-switch">
+                        <span class="slider round"></span>
+                    </label>
+                    <span>Annually <span class="badge-small">Two Months Complimentary</span></span>
+                </div>
+            </div>
+
+            <div class="pricing-grid">
+                <!-- Solo Plan -->
+                <div class="pricing-card glass-panel fade-up">
+                    <div class="plan-name">Boutique</div>
+                    <div class="plan-desc">Curated for the solo visionary.</div>
+                    <div class="plan-price"><span class="currency">$</span><span class="amount" data-monthly="129" data-annual="109">129</span><span class="period">/mo</span></div>
+                    <ul class="plan-features">
+                        <li><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg> 1 Lead Provider</li>
+                        <li><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg> Archiving for 1,500 active patients</li>
+                        <li><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg> Elite scheduling module</li>
+                        <li><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg> Digital charting suite</li>
+                    </ul>
+                    <a href="#signup" class="btn btn-outline btn-full">Get Started</a>
+                </div>
+
+                <!-- Clinic Plan (Popular) -->
+                <div class="pricing-card glass-panel popular fade-up" style="animation-delay: 0.1s;">
+                    <div class="popular-badge glow-border">Signature Collection</div>
+                    <div class="plan-name">Clinic</div>
+                    <div class="plan-desc">For flourishing multi-chair practices.</div>
+                    <div class="plan-price"><span class="currency">$</span><span class="amount" data-monthly="299" data-annual="249">299</span><span class="period">/mo</span></div>
+                    <ul class="plan-features">
+                        <li><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg> Up to 5 Providers</li>
+                        <li><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg> Infinite patient archiving</li>
+                        <li><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg> Predictive analytics & reporting</li>
+                        <li><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg> Priority onboarding</li>
+                    </ul>
+                    <a href="#demo" class="btn btn-primary btn-full pulse">Book a Demo</a>
+                </div>
+
+                <!-- Enterprise Plan -->
+                <div class="pricing-card glass-panel fade-up" style="animation-delay: 0.2s;">
+                    <div class="plan-name">Syndicate</div>
+                    <div class="plan-desc">For influential DSO groups.</div>
+                    <div class="plan-price"><span class="currency">$</span><span class="amount" data-monthly="799" data-annual="649">799</span><span class="period">/mo</span></div>
+                    <ul class="plan-features">
+                        <li><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg> Unlimited Providers</li>
+                        <li><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg> Multi-estate management</li>
+                        <li><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg> Bespoke API architecture</li>
+                        <li><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg> Dedicated account director</li>
+                    </ul>
+                    <a href="#sales" class="btn btn-outline btn-full">Contact Sales</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="testimonials section-padding">
+        <div class="container">
+            <div class="section-header text-center fade-up">
+                <h2 class="section-title">Whispered among the <span class="text-gradient">elite</span></h2>
+            </div>
+            
+            <div class="testimonials-grid">
+                <div class="testimonial-card glass-panel fade-up">
+                    <div class="stars">★★★★★</div>
+                    <p class="quote">"LuxDent is not just software; it is an experience. It fundamentally transformed the ambiance of our clinic's management. Truly exquisite."</p>
+                    <div class="author">
+                        <img src="https://i.pravatar.cc/100?img=5" alt="Dr. Alisha" />
+                        <div>
+                            <h4>Dr. Alisha Reynolds</h4>
+                            <span>Aesthetic Smiles, Beverly Hills</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card glass-panel fade-up" style="animation-delay: 0.1s;">
+                    <div class="stars">★★★★★</div>
+                    <p class="quote">"The craftsmanship of the interface is sublime. It performs complex tasks with the grace of a high-end timepiece. An absolute joy for my team."</p>
+                    <div class="author">
+                        <img src="https://i.pravatar.cc/100?img=11" alt="Dr. James" />
+                        <div>
+                            <h4>Dr. James Chen</h4>
+                            <span>Elite Dental Group, Manhattan</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portal Section (Auth & Dashboard) -->
+    <section id="portal-section" class="portal-section section-padding" style="position: relative; overflow: hidden; background: rgba(5,11,20,0.4); border-top: 1px solid var(--glass-border);">
+        <div class="container text-center" style="margin-bottom: 40px;">
+            <h2 class="section-title" id="portal-title">Client <span class="text-gradient">Portal</span></h2>
+        </div>
+
+        <div class="container portal-container" style="position: relative; z-index: 10;">
+            
+            <!-- AUTHENTICATION VIEW -->
+            <div id="auth-view" style="display: none; max-width: 500px; margin: 0 auto; background: linear-gradient(145deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0.01) 100%); border: 1px solid var(--glass-border); border-radius: 24px; padding: 40px; backdrop-filter: blur(20px);">
+                
+                <div class="auth-tabs" style="display: flex; gap: 30px; margin-bottom: 40px; border-bottom: 1px solid var(--glass-border);">
+                    <div class="auth-tab active" onclick="switchAuthTab('login')" style="padding-bottom: 16px; color: var(--text-primary); cursor: pointer; border-bottom: 2px solid var(--accent-teal);">Sign In</div>
+                    <div class="auth-tab" onclick="switchAuthTab('signup')" style="padding-bottom: 16px; color: var(--text-secondary); cursor: pointer;">Create Account</div>
+                </div>
+
+                <form id="portal-login-form" class="portal-form active" style="display: flex; flex-direction: column; gap: 20px;">
+                    <div class="input-group" style="text-align: left;">
+                        <label style="font-size:0.85rem; color:var(--text-secondary); text-transform:uppercase; letter-spacing:0.1em;">Email</label>
+                        <input type="email" id="login-email" required placeholder="dr.smith@example.com" style="width:100%; padding: 16px; background: rgba(0,0,0,0.2); border: 1px solid var(--glass-border); border-radius: 8px; color: white; margin-top:8px; font-family: var(--font-body);">
+                    </div>
+                    <div class="input-group" style="text-align: left;">
+                        <label style="font-size:0.85rem; color:var(--text-secondary); text-transform:uppercase; letter-spacing:0.1em;">Password</label>
+                        <input type="password" id="login-password" required placeholder="••••••••" style="width:100%; padding: 16px; background: rgba(0,0,0,0.2); border: 1px solid var(--glass-border); border-radius: 8px; color: white; margin-top:8px; font-family: var(--font-body);">
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center; margin-top: 10px;">Access Dashboard</button>
+                    <div id="login-status" style="font-size:0.9rem; min-height: 20px; text-align:center;"></div>
+                </form>
+
+                <form id="portal-signup-form" class="portal-form" style="display: none; flex-direction: column; gap: 20px;">
+                    <div class="input-group" style="text-align: left;">
+                        <label style="font-size:0.85rem; color:var(--text-secondary); text-transform:uppercase; letter-spacing:0.1em;">Full Name</label>
+                        <input type="text" id="signup-name" required placeholder="Dr. Sarah Smith" style="width:100%; padding: 16px; background: rgba(0,0,0,0.2); border: 1px solid var(--glass-border); border-radius: 8px; color: white; margin-top:8px; font-family: var(--font-body);">
+                    </div>
+                    <div class="input-group" style="text-align: left;">
+                        <label style="font-size:0.85rem; color:var(--text-secondary); text-transform:uppercase; letter-spacing:0.1em;">Email</label>
+                        <input type="email" id="signup-email" required placeholder="dr.smith@example.com" style="width:100%; padding: 16px; background: rgba(0,0,0,0.2); border: 1px solid var(--glass-border); border-radius: 8px; color: white; margin-top:8px; font-family: var(--font-body);">
+                    </div>
+                    <div class="input-group" style="text-align: left;">
+                        <label style="font-size:0.85rem; color:var(--text-secondary); text-transform:uppercase; letter-spacing:0.1em;">Practice Website</label>
+                        <input type="url" id="signup-website" placeholder="https://luxdent.com" style="width:100%; padding: 16px; background: rgba(0,0,0,0.2); border: 1px solid var(--glass-border); border-radius: 8px; color: white; margin-top:8px; font-family: var(--font-body);">
+                    </div>
+                    <div class="input-group" style="text-align: left;">
+                        <label style="font-size:0.85rem; color:var(--text-secondary); text-transform:uppercase; letter-spacing:0.1em;">Password</label>
+                        <input type="password" id="signup-password" required minlength="6" placeholder="••••••••" style="width:100%; padding: 16px; background: rgba(0,0,0,0.2); border: 1px solid var(--glass-border); border-radius: 8px; color: white; margin-top:8px; font-family: var(--font-body);">
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center; margin-top: 10px;">Create Account</button>
+                    <div id="signup-status" style="font-size:0.9rem; min-height: 20px; text-align:center;"></div>
+                </form>
+            </div>
+
+            <!-- DASHBOARD VIEW -->
+            <div id="dashboard-view" style="display: none; width: 100%;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px; padding: 0 20px;">
+                    <div>
+                        <h3 style="font-size: 2.5rem; margin:0;" class="section-title">Welcome, <span id="dash-name" class="text-gradient">Doctor</span>.</h3>
+                        <p style="color: var(--text-secondary); margin-top: 8px;">Your secure practice vault</p>
+                    </div>
+                    <button onclick="handleLogout()" class="btn btn-outline" style="padding: 10px 20px;">Sign Out</button>
+                </div>
+
+                <div class="bento-grid" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));">
+                    <div class="feature-card glass-panel" id="card-goal" style="padding: 40px;">
+                        <div class="card-inner">
+                            <label style="font-size:0.9rem; color:var(--text-secondary); text-transform:uppercase; letter-spacing:0.1em;">Primary Target</label>
+                            <form class="metric-form" id="form-goal" style="margin-top: 16px; display: flex; flex-direction: column;">
+                                <input type="text" id="input-goal" placeholder="e.g. 3 Locations" style="width:100%; background:transparent; border:none; border-bottom:1px solid rgba(255,255,255,0.2); color:white; font-size:1.8rem; font-family:var(--font-heading); padding:8px 0; outline:none; transition: var(--transition-fast);">
+                                <button type="submit" class="save-btn" id="save-goal" style="margin-top: 24px; align-self: flex-start; background:var(--glass-bg); border:1px solid var(--glass-border); color:white; padding:8px 24px; border-radius:20px; cursor:pointer; opacity:0; transition:all 0.3s; transform: translateY(10px);">Save Target</button>
+                            </form>
+                        </div>
+                    </div>
+                    
+                    <div class="feature-card glass-panel" id="card-income" style="padding: 40px;">
+                        <div class="card-inner">
+                            <label style="font-size:0.9rem; color:var(--text-secondary); text-transform:uppercase; letter-spacing:0.1em;">Target ARR</label>
+                            <form class="metric-form" id="form-income" style="margin-top: 16px; display: flex; flex-direction: column;">
+                                <input type="text" id="input-income" placeholder="$1.2M" style="width:100%; background:transparent; border:none; border-bottom:1px solid rgba(255,255,255,0.2); color:white; font-size:1.8rem; font-family:var(--font-heading); padding:8px 0; outline:none; transition: var(--transition-fast);">
+                                <button type="submit" class="save-btn" id="save-income" style="margin-top: 24px; align-self: flex-start; background:var(--glass-bg); border:1px solid var(--glass-border); color:white; padding:8px 24px; border-radius:20px; cursor:pointer; opacity:0; transition:all 0.3s; transform: translateY(10px);">Save Revenue</button>
+                            </form>
+                        </div>
+                    </div>
+
+                    <div class="feature-card glass-panel" id="card-clients" style="padding: 40px;">
+                        <div class="card-inner">
+                            <label style="font-size:0.9rem; color:var(--text-secondary); text-transform:uppercase; letter-spacing:0.1em;">Active Clients</label>
+                            <form class="metric-form" id="form-clients" style="margin-top: 16px; display: flex; flex-direction: column;">
+                                <input type="number" id="input-clients" placeholder="450" style="width:100%; background:transparent; border:none; border-bottom:1px solid rgba(255,255,255,0.2); color:white; font-size:1.8rem; font-family:var(--font-heading); padding:8px 0; outline:none; transition: var(--transition-fast);">
+                                <button type="submit" class="save-btn" id="save-clients" style="margin-top: 24px; align-self: flex-start; background:var(--glass-bg); border:1px solid var(--glass-border); color:white; padding:8px 24px; border-radius:20px; cursor:pointer; opacity:0; transition:all 0.3s; transform: translateY(10px);">Save Clients</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Ambient Background for the portal -->
+        <div style="position: absolute; right: 10%; bottom: 10%; width: 50vw; height: 50vw; background: radial-gradient(circle, rgba(79, 70, 229, 0.1) 0%, transparent 60%); border-radius: 50%; filter: blur(40px); z-index: 1; pointer-events:none;"></div>
+        <div style="position: absolute; left: 10%; top: 10%; width: 30vw; height: 30vw; background: radial-gradient(circle, rgba(6, 182, 212, 0.1) 0%, transparent 60%); border-radius: 50%; filter: blur(40px); z-index: 1; pointer-events:none;"></div>
+    </section>
+
+    <!-- Global Toast -->
+    <div id="toast" style="position:fixed; bottom:40px; right:40px; background:rgba(6,182,212,0.1); border:1px solid rgba(6,182,212,0.3); backdrop-filter:blur(10px); padding:16px 24px; border-radius:12px; color:white; font-size:0.95rem; transform:translateY(100px); opacity:0; transition:all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); z-index:1000; pointer-events:none;">Metrics Synced to Vault.</div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container footer-grid">
+            <div class="footer-brand">
+                <a href="#" class="logo">
+                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 2C8.68629 2 6 4.68629 6 8C6 11.0052 7.71221 14.7171 10.1585 17.848C10.7411 18.5938 11.3912 19.2974 12 19.8967C12.6088 19.2974 13.2589 18.5938 13.8415 17.848C16.2878 14.7171 18 11.0052 18 8C18 4.68629 15.3137 2 12 2Z" stroke="var(--accent-teal)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    LuxDent
+                </a>
+                <p>The premium operating system for modern dental practices.</p>
+            </div>
+            <div class="footer-links">
+                <h4>Platform</h4>
+                <ul>
+                    <li><a href="#">Features</a></li>
+                    <li><a href="#">Membership</a></li>
+                    <li><a href="#">Security</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Insights</h4>
+                <ul>
+                    <li><a href="#">The Journal</a></li>
+                    <li><a href="#">Case Studies</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Maison</h4>
+                <ul>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Contact</a></li>
+                    <li><a href="#">Privacy</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="container footer-bottom">
+            <p>&copy; 2026 LuxDent Inc. Elegance in engineering.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script type="module">
+        import { supabase, getSession } from './auth.js';
+
+        let userId = null;
+
+        // UI Helpers
+        window.switchAuthTab = (tab) => {
+            document.querySelectorAll('.auth-tab').forEach(el => {
+                el.style.color = 'var(--text-secondary)';
+                el.style.borderBottom = 'none';
+            });
+            event.target.style.color = 'var(--text-primary)';
+            event.target.style.borderBottom = '2px solid var(--accent-teal)';
+
+            document.getElementById('portal-login-form').style.display = tab === 'login' ? 'flex' : 'none';
+            document.getElementById('portal-signup-form').style.display = tab === 'signup' ? 'flex' : 'none';
+            
+            document.getElementById('login-status').textContent = '';
+            document.getElementById('signup-status').textContent = '';
+        }
+
+        async function initPortal() {
+            const session = await getSession();
+            
+            // Adjust Login Nav Link text
+            const loginBtn = document.getElementById('nav-login-btn');
+            if (loginBtn) {
+                loginBtn.textContent = session ? 'Dashboard' : 'Portal Log In';
+            }
+
+            if (session) {
+                userId = session.user.id;
+                document.getElementById('auth-view').style.display = 'none';
+                document.getElementById('dashboard-view').style.display = 'block';
+                document.getElementById('portal-title').parentNode.style.display = 'none'; // hide "Client Portal" title if logged in
+                loadProfile();
+                loadMetrics();
+            } else {
+                document.getElementById('dashboard-view').style.display = 'none';
+                document.getElementById('auth-view').style.display = 'block';
+                document.getElementById('portal-title').parentNode.style.display = 'block';
+            }
+            
+            attachListeners();
+        }
+
+        // --- Database Functions --- //
+        
+        async function loadProfile() {
+            const { data } = await supabase.from('profiles').select('name').eq('id', userId).single();
+            if (data && data.name) {
+                document.getElementById('dash-name').textContent = data.name.split(' ')[0];
+            }
+        }
+
+        async function loadMetrics() {
+            const { data } = await supabase.from('dashboard_metrics').select('*').eq('id', userId).single();
+            if (data) {
+                document.getElementById('input-goal').value = data.goal || '';
+                document.getElementById('input-income').value = data.income || '';
+                document.getElementById('input-clients').value = data.clients || '';
+            }
+        }
+
+        window.handleLogout = async () => {
+            await supabase.auth.signOut();
+            window.location.reload();
+        }
+
+        function showToast() {
+            const toast = document.getElementById('toast');
+            toast.style.transform = 'translateY(0)';
+            toast.style.opacity = '1';
+            setTimeout(() => {
+                toast.style.transform = 'translateY(100px)';
+                toast.style.opacity = '0';
+            }, 3000);
+        }
+
+        async function saveMetric(field, value, btn) {
+            btn.textContent = 'Saving...';
+            const payload = { id: userId };
+            payload[field] = value;
+            
+            const { error } = await supabase.from('dashboard_metrics').upsert(payload);
+
+            if (!error) {
+                btn.textContent = 'Saved';
+                btn.style.opacity = '0';
+                btn.style.transform = 'translateY(10px)';
+                showToast();
+            } else {
+                btn.textContent = 'Error';
+            }
+        }
+
+        // --- Event Listeners --- //
+
+        function attachListeners() {
+            // Dashboard Forms
+            ['goal', 'income', 'clients'].forEach(field => {
+                const input = document.getElementById(`input-${field}`);
+                const btn = document.getElementById(`save-${field}`);
+                const form = document.getElementById(`form-${field}`);
+                
+                input.addEventListener('input', () => {
+                    btn.style.opacity = '1';
+                    btn.style.transform = 'translateY(0)';
+                    btn.textContent = `Save ${field.charAt(0).toUpperCase() + field.slice(1)}`;
+                });
+
+                // Styling inputs focus
+                input.addEventListener('focus', () => { input.style.borderBottomColor = 'var(--accent-teal)'; });
+                input.addEventListener('blur', () => { input.style.borderBottomColor = 'rgba(255,255,255,0.2)'; });
+
+                form.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    let val = input.value;
+                    if (field === 'clients') val = parseInt(val) || 0;
+                    saveMetric(field, val, btn);
+                });
+            });
+
+            // Login
+            document.getElementById('portal-login-form').addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const btn = e.target.querySelector('button');
+                const status = document.getElementById('login-status');
+                
+                btn.textContent = 'Authenticating...';
+                status.textContent = '';
+                
+                const email = document.getElementById('login-email').value;
+                const password = document.getElementById('login-password').value;
+
+                const { error } = await supabase.auth.signInWithPassword({ email, password });
+                if (error) {
+                    btn.textContent = 'Access Dashboard';
+                    status.textContent = error.message;
+                    status.style.color = '#ef4444';
+                } else {
+                    status.textContent = 'Success! Authenticating...';
+                    status.style.color = 'var(--accent-teal)';
+                    setTimeout(() => window.location.reload(), 500);
+                }
+            });
+
+            // Signup
+            document.getElementById('portal-signup-form').addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const btn = e.target.querySelector('button');
+                const status = document.getElementById('signup-status');
+                
+                btn.textContent = 'Creating Profile...';
+                
+                const name = document.getElementById('signup-name').value;
+                const email = document.getElementById('signup-email').value;
+                const website = document.getElementById('signup-website').value;
+                const password = document.getElementById('signup-password').value;
+
+                const { data, error } = await supabase.auth.signUp({ email, password });
+
+                if (error) {
+                    btn.textContent = 'Create Account';
+                    status.textContent = error.message;
+                    status.style.color = '#ef4444';
+                    return;
+                }
+
+                if (data.user) {
+                    await supabase.from('profiles').insert([{ id: data.user.id, name, website }]);
+                }
+                
+                status.textContent = 'Registered successfully. Initializing vault...';
+                status.style.color = 'var(--accent-teal)';
+                setTimeout(() => window.location.reload(), 800);
+            });
+        }
+
+        // Boot
+        initPortal();
+    </script>
+</body>
+</html>
