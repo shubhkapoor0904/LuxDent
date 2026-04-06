@@ -133,7 +133,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Calculate which frame to pick (spread 150 frames evenly across 192)
         const frameWanted = Math.floor((i / (FRAME_COUNT - 1)) * (TOTAL_RAW_FRAMES - 1)) + 1;
         const padIndex = String(frameWanted).padStart(5, '0');
-        img.src = `public/assets/tooth/${padIndex}.png`;
+        img.src = `assets/tooth/${padIndex}.png`;
         img.onload = () => {
             loadedImages++;
             if(loadedImages === FRAME_COUNT) {
