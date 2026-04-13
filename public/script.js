@@ -124,42 +124,54 @@ document.addEventListener('DOMContentLoaded', () => {
     const heroScrollSection = document.getElementById('hero-scroll');
     const heroText = document.getElementById('hero-text');
 
-    let images = [];
-    let loadedImages = 0;
+    let images = new Array(FRAME_COUNT);
+    let currentProgress = 0;
 
-    // Load compressed 150 frames mapping across the total 192
-    for(let i = 0; i < FRAME_COUNT; i++) {
-        const img = new Image();
-        // Calculate which frame to pick (spread 150 frames evenly across 192)
-        const frameWanted = Math.floor((i / (FRAME_COUNT - 1)) * (TOTAL_RAW_FRAMES - 1)) + 1;
-        const padIndex = String(frameWanted).padStart(5, '0');
-        img.src = `assets/tooth/${padIndex}.png`;
-        img.onload = () => {
-            loadedImages++;
-            if(loadedImages === FRAME_COUNT) {
-                initCanvas();
-            }
-        };
-        img.onerror = () => {
-            loadedImages++;
-            if(loadedImages === FRAME_COUNT) {
-                initCanvas();
-            }
-        };
-        images.push(img);
-    }
+    const loadRemainingFrames = () => {
+        for(let i = 1; i < FRAME_COUNT; i++) {
+            const img = new Image();
+            const frameWanted = Math.floor((i / (FRAME_COUNT - 1)) * (TOTAL_RAW_FRAMES - 1)) + 1;
+            const padIndex = String(frameWanted).padStart(5, '0');
+            
+            img.onload = () => {
+                const targetFrameIndex = Math.min(FRAME_COUNT - 1, Math.floor(currentProgress * FRAME_COUNT));
+                if (i === targetFrameIndex && lastRenderedFrame !== targetFrameIndex) {
+                    renderFrame(currentProgress);
+                }
+            };
+            
+            img.src = `assets/tooth/${padIndex}.png`;
+            images[i] = img;
+        }
+    };
+
+    // Load compressed 150 frames mapping across the total 192, prioritizing the first frame
+    const firstImg = new Image();
+    firstImg.fetchPriority = 'high';
+    firstImg.src = `assets/tooth/00001.png`;
+    firstImg.onload = () => {
+        initCanvas();
+        loadRemainingFrames();
+    };
+    firstImg.onerror = () => {
+        initCanvas();
+        loadRemainingFrames();
+    };
+    images[0] = firstImg;
 
     let lastRenderedFrame = -1;
 
     function renderFrame(progress) {
         // Clamp progress
         progress = Math.max(0, Math.min(1, progress));
+        currentProgress = progress;
         const frameIndex = Math.min(FRAME_COUNT - 1, Math.floor(progress * FRAME_COUNT));
         if (frameIndex === lastRenderedFrame) return;
-        lastRenderedFrame = frameIndex;
 
         const img = images[frameIndex];
-        if (!img || !img.width) return;
+        if (!img || !img.complete || !img.naturalWidth) return;
+
+        lastRenderedFrame = frameIndex;
 
         // Ensure canvas width height exactly matched the rendered DOM size for retina displays
         canvas.width = canvas.offsetWidth * window.devicePixelRatio;
