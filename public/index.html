@@ -14,6 +14,26 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <!-- Initial Loading Screen (Digital Blueprint) -->
+    <div id="lux-loading-screen" class="loading-screen">
+        <div class="loading-content">
+            <div class="blueprint-container">
+                <!-- SVG Wireframe Tooth -->
+                <svg class="blueprint-tooth" viewBox="0 0 100 100" fill="none" stroke="var(--accent-teal)" stroke-width="1.5">
+                    <!-- Stylized tooth outline -->
+                    <path d="M50 15 C33 15, 20 25, 20 40 C20 54, 30 70, 40 85 C45 92, 55 92, 60 85 C70 70, 80 54, 80 40 C80 25, 67 15, 50 15 Z" />
+                    <!-- Inner details -->
+                    <path d="M40 85 C35 70, 50 55, 50 55 C50 55, 65 70, 60 85" stroke-opacity="0.3"/>
+                    <path d="M20 40 C40 45, 60 45, 80 40" stroke-opacity="0.3"/>
+                </svg>
+                <div class="scanner-beam"></div>
+            </div>
+            <div class="loading-stats">
+                <div class="loading-text" id="loading-text">Calibrating 3D Engine...</div>
+                <div class="loading-percentage" id="loading-percentage">0%</div>
+            </div>
+        </div>
+    </div>
     <div class="blob blob-1"></div>
     <div class="blob blob-2"></div>
     

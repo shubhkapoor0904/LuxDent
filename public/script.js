@@ -127,6 +127,35 @@ document.addEventListener('DOMContentLoaded', () => {
     let images = new Array(FRAME_COUNT);
     let currentProgress = 0;
 
+    const loadingScreen = document.getElementById('lux-loading-screen');
+    const loadingPct = document.getElementById('loading-percentage');
+    const loadingTxt = document.getElementById('loading-text');
+
+    let loadedCount = 0;
+
+    const updateLoadingUI = () => {
+        loadedCount++;
+        const pct = Math.floor((loadedCount / FRAME_COUNT) * 100);
+        if (loadingPct) loadingPct.textContent = `${pct}%`;
+        
+        if (loadingTxt) {
+            if (pct > 85) loadingTxt.textContent = "Initializing LuxDent OS...";
+            else if (pct > 50) loadingTxt.textContent = "Syncing Digital Vault...";
+            else if (pct > 20) loadingTxt.textContent = "Loading Radiography Engine...";
+        }
+
+        if (loadedCount >= FRAME_COUNT) {
+            setTimeout(() => {
+                if (loadingScreen) {
+                    loadingScreen.style.opacity = '0';
+                    loadingScreen.style.pointerEvents = 'none';
+                    setTimeout(() => loadingScreen.style.display = 'none', 1000);
+                }
+                renderFrame(currentProgress);
+            }, 600); // slight pause to let user see 100%
+        }
+    };
+
     const loadRemainingFrames = () => {
         for(let i = 1; i < FRAME_COUNT; i++) {
             const img = new Image();
@@ -138,6 +167,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (i === targetFrameIndex && lastRenderedFrame !== targetFrameIndex) {
                     renderFrame(currentProgress);
                 }
+                updateLoadingUI();
+            };
+            img.onerror = () => {
+                updateLoadingUI();
             };
             
             img.src = `assets/tooth/${padIndex}.png`;
@@ -151,10 +184,12 @@ document.addEventListener('DOMContentLoaded', () => {
     firstImg.src = `assets/tooth/00001.png`;
     firstImg.onload = () => {
         initCanvas();
+        updateLoadingUI();
         loadRemainingFrames();
     };
     firstImg.onerror = () => {
         initCanvas();
+        updateLoadingUI();
         loadRemainingFrames();
     };
     images[0] = firstImg;
