@@ -14,23 +14,13 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <!-- Initial Loading Screen (Digital Blueprint) -->
+    <!-- Initial Loading Screen (Simple Dotted Animation) -->
     <div id="lux-loading-screen" class="loading-screen">
         <div class="loading-content">
-            <div class="blueprint-container">
-                <!-- SVG Wireframe Tooth -->
-                <svg class="blueprint-tooth" viewBox="0 0 100 100" fill="none" stroke="var(--accent-teal)" stroke-width="1.5">
-                    <!-- Stylized tooth outline -->
-                    <path d="M50 15 C33 15, 20 25, 20 40 C20 54, 30 70, 40 85 C45 92, 55 92, 60 85 C70 70, 80 54, 80 40 C80 25, 67 15, 50 15 Z" />
-                    <!-- Inner details -->
-                    <path d="M40 85 C35 70, 50 55, 50 55 C50 55, 65 70, 60 85" stroke-opacity="0.3"/>
-                    <path d="M20 40 C40 45, 60 45, 80 40" stroke-opacity="0.3"/>
-                </svg>
-                <div class="scanner-beam"></div>
-            </div>
-            <div class="loading-stats">
-                <div class="loading-text" id="loading-text">Calibrating 3D Engine...</div>
-                <div class="loading-percentage" id="loading-percentage">0%</div>
+            <div class="dot-loader">
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
             </div>
         </div>
     </div>
@@ -40,17 +30,9 @@
     <!-- Navbar -->
     <nav class="navbar text-reveal">
         <div class="container nav-container">
-            <a href="#" class="logo">
-                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M12 2C8.68629 2 6 4.68629 6 8C6 11.0052 7.71221 14.7171 10.1585 17.848C10.7411 18.5938 11.3912 19.2974 12 19.8967C12.6088 19.2974 13.2589 18.5938 13.8415 17.848C16.2878 14.7171 18 11.0052 18 8C18 4.68629 15.3137 2 12 2Z" stroke="url(#logo-grad)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                    <defs>
-                        <linearGradient id="logo-grad" x1="6" y1="2" x2="18" y2="20" gradientUnits="userSpaceOnUse">
-                            <stop stop-color="#06B6D4"/>
-                            <stop offset="1" stop-color="#4F46E5"/>
-                        </linearGradient>
-                    </defs>
-                </svg>
-                LuxDent
+            <a href="#" class="logo" style="display: flex; align-items: center; gap: 8px; text-decoration: none;">
+                <img src="assets/tooth/logo.png" alt="LuxDent" style="height: 42px; width: auto; object-fit: contain; transform: translateY(-2px);">
+                <span style="font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 600; color: white; letter-spacing: 0.5px; line-height: 1;">LuxDent</span>
             </a>
             <ul class="nav-links">
                 <li><a href="#features">Platform</a></li>
@@ -59,7 +41,7 @@
             </ul>
             <div class="nav-cta">
                 <a href="#portal-section" class="btn btn-outline" id="nav-login-btn">Log In</a>
-                <a href="#demo" class="btn btn-primary">Book a Demo</a>
+                <a href="#" onclick="openDemoModal(); return false;" class="btn btn-primary">Book a Demo</a>
             </div>
             <button class="mobile-menu-toggle" aria-label="Toggle menu">
                 <span></span>
@@ -95,7 +77,7 @@
                     <h1 class="fade-up" style="animation-delay: 0.1s;">Elevate your <span class="text-gradient">practice</span> to an art form.</h1>
                     <p class="fade-up" style="animation-delay: 0.2s;">The quintessential operating system for the most distinguished dental clinics. Uncompromising elegance meets clinical precision.</p>
                     <div class="hero-buttons fade-up" style="animation-delay: 0.3s;">
-                        <a href="#demo" class="btn btn-primary btn-large">Book a Demo</a>
+                        <a href="#" onclick="openDemoModal(); return false;" class="btn btn-primary btn-large">Book a Demo</a>
                         <a href="#tour" class="btn btn-secondary btn-large">Explore the Platform</a>
                     </div>
                     <div class="hero-social-proof fade-up" style="animation-delay: 0.4s;">
@@ -274,7 +256,7 @@
                         <li><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg> Predictive analytics & reporting</li>
                         <li><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg> Priority onboarding</li>
                     </ul>
-                    <a href="#demo" class="btn btn-primary btn-full pulse">Book a Demo</a>
+                    <a href="#" onclick="openDemoModal(); return false;" class="btn btn-primary btn-full pulse">Book a Demo</a>
                 </div>
 
                 <!-- Enterprise Plan -->
@@ -435,11 +417,9 @@
     <footer>
         <div class="container footer-grid">
             <div class="footer-brand">
-                <a href="#" class="logo">
-                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M12 2C8.68629 2 6 4.68629 6 8C6 11.0052 7.71221 14.7171 10.1585 17.848C10.7411 18.5938 11.3912 19.2974 12 19.8967C12.6088 19.2974 13.2589 18.5938 13.8415 17.848C16.2878 14.7171 18 11.0052 18 8C18 4.68629 15.3137 2 12 2Z" stroke="var(--accent-teal)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                    LuxDent
+                <a href="#" class="logo" style="display: flex; align-items: center; gap: 6px; text-decoration: none;">
+                     <img src="assets/tooth/logo.png" alt="LuxDent" style="height: 32px; width: auto; object-fit: contain; transform: translateY(-2px);">
+                     <span style="font-family: 'Playfair Display', serif; font-size: 1.25rem; font-weight: 600; color: white; letter-spacing: 0.5px; line-height: 1;">LuxDent</span>
                 </a>
                 <p>The premium operating system for modern dental practices.</p>
             </div>
@@ -472,11 +452,55 @@
         </div>
     </footer>
 
+    <!-- Demo Modal -->
+    <div id="demo-modal" class="modal-overlay" style="display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.8); backdrop-filter: blur(8px); z-index: 9999; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.3s;">
+        <div class="modal-content glass-panel" style="width: 100%; max-width: 500px; padding: 40px; border-radius: 24px; position: relative; transform: scale(0.95); transition: transform 0.3s;">
+            <button onclick="closeDemoModal()" style="position: absolute; right: 20px; top: 20px; background: none; border: none; color: var(--text-secondary); font-size: 1.5rem; cursor: pointer;">&times;</button>
+            <h3 class="section-title" style="font-size: 2rem; margin-bottom: 12px;">Let's get <span class="text-gradient">acquainted</span></h3>
+            <p style="color: var(--text-secondary); margin-bottom: 24px;">Experience the pinnacle of dental practice management.</p>
+            <form onsubmit="submitDemo(event)" style="display: flex; flex-direction: column; gap: 16px;">
+                <input type="text" required placeholder="Full Name" style="width: 100%; padding: 14px; border-radius: 8px; background: rgba(0,0,0,0.2); border: 1px solid var(--glass-border); color: white;">
+                <input type="email" required placeholder="Email Address" style="width: 100%; padding: 14px; border-radius: 8px; background: rgba(0,0,0,0.2); border: 1px solid var(--glass-border); color: white;">
+                <input type="text" placeholder="Clinic Name" style="width: 100%; padding: 14px; border-radius: 8px; background: rgba(0,0,0,0.2); border: 1px solid var(--glass-border); color: white;">
+                <button type="submit" class="btn btn-primary" style="margin-top: 8px; justify-content: center;">Request Priority Access</button>
+            </form>
+            <div id="demo-status" style="margin-top: 16px; text-align: center; color: var(--accent-teal); display: none;">Thank you. Our concierge will contact you shortly.</div>
+        </div>
+    </div>
+
     <script src="script.js"></script>
     <script type="module">
         import { supabase, getSession } from './auth.js';
 
         let userId = null;
+
+        // Modal Logic
+        window.openDemoModal = () => {
+            const modal = document.getElementById('demo-modal');
+            modal.style.display = 'flex';
+            setTimeout(() => {
+                modal.style.opacity = '1';
+                modal.querySelector('.modal-content').style.transform = 'scale(1)';
+            }, 10);
+        };
+        window.closeDemoModal = () => {
+            const modal = document.getElementById('demo-modal');
+            modal.style.opacity = '0';
+            modal.querySelector('.modal-content').style.transform = 'scale(0.95)';
+            setTimeout(() => {
+                modal.style.display = 'none';
+            }, 300);
+        };
+        window.submitDemo = (e) => {
+            e.preventDefault();
+            const btn = e.target.querySelector('button[type="submit"]');
+            btn.textContent = 'Submitting...';
+            setTimeout(() => {
+                e.target.style.display = 'none';
+                document.getElementById('demo-status').style.display = 'block';
+                setTimeout(() => closeDemoModal(), 3000);
+            }, 1500);
+        };
 
         // UI Helpers
         window.switchAuthTab = (tab) => {
