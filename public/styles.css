@@ -1,36 +1,28 @@
 /* CSS Reset & Variables */
 :root {
-    /* Deep Midnight Navy base (Kept for Dark Theme) */
+    /* Luxurious Color Palette: Deep Midnight Navy base */
     --bg-color: #050B14;
-    --bg-color-secondary: #0A111D;
-    
-    /* Surface Layering (Replaces rigid borders per Editorial Guide) */
-    --surface: #050B14;
-    --surface-container-low: #0A131F;
-    --surface-container-high: #0E1A2B;
-    --surface-container-highest: #122137;
-    
+    --bg-color-secondary: #0A111X;
     --text-primary: #F8FAFC;
     --text-secondary: #94A3B8;
     
-    /* Gradients & Accents (Warm Gamified #FF6B35 to #D78800) */
-    --accent-teal: #FF6B35; /* Keeping var name for broad retro-compatibility */
-    --accent-indigo: #D78800;
+    /* Gradients & Accents (Teal to Indigo) */
+    --accent-teal: #06B6D4;
+    --accent-indigo: #4F46E5;
     --gradient-primary: linear-gradient(135deg, var(--accent-teal) 0%, var(--accent-indigo) 100%);
     
-    /* Glassmorphism -> Shifted to Tonal Layering */
-    --glass-bg: var(--surface-container-low);
-    --glass-border: transparent; /* No-line rule */
-    --glass-highlight: var(--surface-container-high);
+    /* Glassmorphism */
+    --glass-bg: rgba(255, 255, 255, 0.02);
+    --glass-border: rgba(255, 255, 255, 0.06);
+    --glass-highlight: rgba(255, 255, 255, 0.08);
     
     /* Spacing & Layout */
     --container-width: 1200px;
     --nav-height: 88px;
     
-    /* Typography: Editorial Gamification System */
-    --font-heading: 'Epilogue', sans-serif;
-    --font-body: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
-    --font-mono: 'Space Grotesk', monospace;
+    /* Typography: Dual-font system */
+    --font-heading: 'Playfair Display', serif;
+    --font-body: 'Inter', system-ui, -apple-system, sans-serif;
     
     /* Transitions */
     --transition-fast: 0.2s ease;
@@ -62,19 +54,20 @@ body {
 h1, h2, h3, h4, .logo {
     font-family: var(--font-heading);
     line-height: 1.1;
-    font-weight: 700; /* Epilogue looks best bold and tight */
-    letter-spacing: -0.02em;
+    font-weight: 400; /* Playfair looks best somewhat light */
+    letter-spacing: -0.01em;
 }
 
-h1 { font-weight: 700; }
-h2 { font-weight: 700; }
+h1 { font-style: italic; font-weight: 600; }
+h2 { font-weight: 600; }
 
 .text-gradient {
     background: var(--gradient-primary);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    padding-right: 0.1em;
+    font-style: italic;
+    padding-right: 0.1em; /* prevents clipping of italic serif */
 }
 
 a {
@@ -155,8 +148,8 @@ ul {
     align-items: center;
     justify-content: center;
     padding: 12px 28px;
-    border-radius: 9999px; /* The Pill */
-    font-weight: 600;
+    border-radius: 8px; /* Slightly sharper for tech/luxury */
+    font-weight: 500;
     font-size: 0.95rem;
     cursor: pointer;
     transition: var(--transition-smooth);
@@ -166,25 +159,26 @@ ul {
 }
 
 .btn-primary {
-    background: var(--gradient-primary);
-    color: #ffffff;
+    background: var(--text-primary);
+    color: var(--bg-color);
 }
 
 .btn-primary:hover {
     transform: translateY(-2px);
-    box-shadow: 0 10px 25px rgba(255, 107, 53, 0.3);
-    filter: brightness(1.1);
+    box-shadow: 0 10px 25px rgba(255, 255, 255, 0.15);
+    background: #ffffff;
 }
 
 .btn-secondary {
-    background: var(--surface-container-highest);
+    background: var(--glass-bg);
     color: var(--text-primary);
-    border: none;
+    border: 1px solid var(--glass-border);
+    backdrop-filter: blur(12px);
 }
 
 .btn-secondary:hover {
-    background: #ffffff;
-    color: #000000;
+    background: var(--glass-highlight);
+    border-color: rgba(255, 255, 255, 0.2);
     transform: translateY(-2px);
 }
 
@@ -277,17 +271,18 @@ ul {
 
 /* Glass Panel Utility & Glows */
 .glass-panel {
-    background: var(--surface-container-low);
-    border: none;
-    border-radius: 2rem;
+    background: var(--glass-bg);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid var(--glass-border);
+    border-radius: 20px;
     padding: 40px;
     transition: var(--transition-smooth);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05); /* subtle inner highlight */
 }
 
 .glass-panel:hover {
-    background: var(--surface-container-high);
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+    border-color: rgba(255, 255, 255, 0.12);
 }
 
 .glow-border {
